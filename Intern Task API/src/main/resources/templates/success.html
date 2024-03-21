@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Success Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
+</head>
+<style>
+    body {
+        text-align: center;
+        padding: 40px 0;
+        background: #EBF0F5;
+    }
+    h1 {
+        color: #88B04B;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-weight: 900;
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+    p {
+        color: #404F5E;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-size:20px;
+        margin: 0;
+    }
+    i {
+        color: #9ABC66;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left:-15px;
+    }
+    .card {
+        background: white;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+    }
+    img{
+        border-radius: 200px;
+        align-items: center;
+    }
+</style>
+<body>
+<div class="card">
+    <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+<!--        <i class="checkmark"></i>-->
+        <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/b8a21cd3-db05-41d7-afc9-bf8be71beebb/dfjbtne-8574d748-5c59-4738-a5e8-af4aa8b0994f.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2I4YTIxY2QzLWRiMDUtNDFkNy1hZmM5LWJmOGJlNzFiZWViYlwvZGZqYnRuZS04NTc0ZDc0OC01YzU5LTQ3MzgtYTVlOC1hZjRhYThiMDk5NGYuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.8YoFoZAytZN7JrOFkrinGfIIfzVYziN9OE7nwIHtuFs" alt="" height=200px; width=200px;>
+        <!--        <div class="tenor-gif-embed" data-postid="1994226948863320437" data-share-method="host" data-aspect-ratio="1" data-width="100%">-->
+<!--            <a href="https://tenor.com/view/happy-yes-excited-win-yay-gif-1994226948863320437">Happy Yes Sticker</a></div>-->
+    </div>
+<h1 th:text="'Task updated Successfully'"></h1>
+<p><a th:href="@{/tasks/personal_page}">Go back to Index Page</a></p>
+</div>
+</body>
+</html>

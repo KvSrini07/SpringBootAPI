@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Page</title>
+    <link rel="stylesheet" href="/css/task.css">
+</head>
+<body>
+<div class="wrapper">
+    <h2>Task Submission</h2>
+    <form action="tasks/success" th:object="${task}" method="post" th:action="@{/tasks/saveTask}">
+<!--            <input type="hidden" name="name" th:value="${name}">-->
+<!--        <div class="input-field">-->
+<!--            <input type="text" name="name" th:action="*{name}" required>-->
+<!--            <label>Enter Your Name</label>-->
+<!--        </div>-->
+        <div class="input-field">
+            <textarea th:field="*{taskdes}" required></textarea><br>
+            <label>Enter Your Detailed Task</label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>
+
+
+
+
+
+
