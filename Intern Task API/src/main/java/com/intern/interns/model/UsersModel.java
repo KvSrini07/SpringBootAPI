@@ -1,35 +1,58 @@
 package com.intern.interns.model;
 
-
+import com.intern.interns.task.entity.Task;
 import jakarta.persistence.*;
-
-import java.util.Objects;
+import org.springframework.http.HttpStatus;
 
 @Entity
-@Table(name="interns_full")
+@Table(name="intern")
 
 public class UsersModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
+    @Column(name = "id")
+    private Integer id;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "course")
+    private String course;
+@Column(name = "city")
+    private String city;
+@Column(name = "phoneno")
+    private String phoneno;
+@Column(name = "clg")
+    private String clg;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "task_id", referencedColumnName = "id")
+    Task task;
 
-    @Column(nullable = false, unique = true)
-    String name;
+    public UsersModel() {
 
-    String password;
+    }
 
-    String email;
+    public Task getTask() {
+        return task;
+    }
 
-    String course;
+    public void setTask(Task task) {
+        this.task = task;
+    }
 
-    String city;
-
-    String phoneno;
-
-    String clg;
-
-    String role;
+    public UsersModel(Integer id, String name, String password, String email, String course, String city, String phoneno, String clg){
+        this.id=id;
+        this.name=name;
+        this.password=password;
+        this.email=email;
+        this.course=course;
+        this.clg=clg;
+        this.city=city;
+        this.phoneno=phoneno;
+    }
 
     public Integer getId() {
         return id;
@@ -86,7 +109,6 @@ public class UsersModel {
     public void setPhoneno(String phoneno) {
         this.phoneno = phoneno;
     }
-
     public String getClg() {
         return clg;
     }
@@ -94,38 +116,29 @@ public class UsersModel {
     public void setClg(String clg) {
         this.clg = clg;
     }
-    public String getRole() {
-        return role;
-    }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        UsersModel that = (UsersModel) o;
+//        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(password, that.password) && Objects.equals(email, that.email) && Objects.equals(course, that.course) && Objects.equals(city, that.city) && Objects.equals(phoneno, that.phoneno) && Objects.equals(clg, that.clg);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, name, password, email, course, city, phoneno, clg);
+//    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UsersModel that = (UsersModel) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(password, that.password) && Objects.equals(email, that.email) && Objects.equals(course, that.course) && Objects.equals(city, that.city) && Objects.equals(phoneno, that.phoneno) && Objects.equals(clg, that.clg) && Objects.equals(role, that.role);
+//    @Override
+//    public String toString() {
+//        return "UsersModel{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", email='" + email + '\'' +
+//                ", course='" + course + '\'' +
+//                ", city='" + city + '\'' +
+//                ", phoneno='" + phoneno + '\'' +
+//                ", clg='" + clg + '\'' +
+//                '}';
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, password, email, course, city, phoneno, clg,role);
-    }
-
-    @Override
-    public String toString() {
-        return "UsersModel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", course='" + course + '\'' +
-                ", city='" + city + '\'' +
-                ", phoneno='" + phoneno + '\'' +
-                ", clg='" + clg + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
-}

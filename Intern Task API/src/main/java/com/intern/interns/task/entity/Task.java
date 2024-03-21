@@ -8,29 +8,24 @@ import java.util.Date;
 @Entity
 @Table(name="intern_task")
 public class Task {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name = "id")
     private Long id;
-
-    @Column(nullable = false)
+    @Column(name = "taskdes", nullable = false)
     private String taskdes;
-
-    @Column
-    String name;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "submitted_time", updatable = false)
+    @Column(name = "submitted_time")
     private Date submitted_time;
 
     public Long getId() {
         return id;
     }
 
-
-    public void setName(String name) {
-        this.name = name;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTaskdes() {
@@ -41,7 +36,6 @@ public class Task {
         this.taskdes = taskdes;
     }
 
-
     public Date getSubmitted_time() {
         return submitted_time;
     }
@@ -50,5 +44,11 @@ public class Task {
         this.submitted_time = submitted_time;
     }
 
+    public Task(String taskdes){
+    this.taskdes=taskdes;
+}
+public Task(){
+
+}
 
 }

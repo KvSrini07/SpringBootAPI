@@ -1,76 +1,51 @@
 package com.intern.interns.taskcontroller;
-
-import com.intern.interns.TaskService;
-import com.intern.interns.model.UsersModel;
 import com.intern.interns.task.entity.Task;
-import com.intern.interns.taskrespository.TaskRepository;
+import com.intern.interns.tasksService.TasksServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.ui.Model;
+import java.util.List;
+import java.util.Optional;
 
-import java.util.Date;
-
-@Controller
-@RequestMapping("/tasks")
+@RestController
+@RequestMapping("/task")
     public class TaskController {
 
-        @Autowired
-        private TaskRepository taskRepository;
+    @Autowired
+    private final TasksServices taskService;
 
-        @GetMapping("/personal_page")
-        public String personalPage() {
-            return "personal_page";
-        }
 
-        @GetMapping("/task")
-        public String task(Model model) {
-            model.addAttribute("task", new Task());
-            return "task";
-        }
-        @PostMapping("/saveTask")
-        public String saveTask(Task task, Model model) {
-            taskRepository.save(task);
-            model.addAttribute("successMessage", "Task updated successfully");
-            return "redirect:/tasks/success";
-        }
-        @GetMapping("/success")
-        public String success(Model model){
-            return "success";
-        }
+    public TaskController(TasksServices taskService) {
+        this.taskService = taskService;
+    }
 
-//    @PostMapping("/tasklogin")
-//    public String findByName(@ModelAttribute Task task, Model model) {
-//        System.out.println("taskRequest: " + task);
-//        Task authenticated = TaskService.authenticate(Task.getName());
-//        if (authenticated != null) {
-//            model.addAttribute("taskLogin", Task.getName());
-//            return "personal_page";
-//        } else {
-//            return "error_page";
-//        }
+    @GetMapping
+    public List<Task> findAllTask() {
+        return taskService.findAllTask();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Task> findById(@PathVariable("id") Long id) {
+        return taskService.findById(id);
+    }
+
+    @PostMapping
+    public Task saveTask(@RequestBody Task task) {
+        return taskService.saveTask(task);
+    }
+//    public ResponseEntity<Task> saveTask(@RequestBody Task task) {
+//        Task savedTask = taskService.saveTask(task);
+//        return ResponseEntity.status(HttpStatus.CREATED).body("INSERTED");
 //    }
-//
-//
-//        @GetMapping("/task-form")
-//        public String showTaskForm(Model model) {
-//            model.addAttribute("task", new Task());
-//            return "task-form";
-//        }
 
-//        @PostMapping("/saveTask")
-//        public String saveTask(@ModelAttribute Task task, @RequestParam String name, Model model) {
-//            // Assuming you have a service layer to handle task creation
-//            // You should set the user's name and save the task
-//            task.setName(name);
-//            taskRepository.save(task);
-//
-//            // You can add more attributes to the model if needed
-//            model.addAttribute("message", "Task saved successfully");
-//
-//            return "redirect:/tasks/task-form";
-//        }
+    @PutMapping
+    public Task updateTask(@RequestBody Task task) {
+        return taskService.updateTask(task);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteTask(@PathVariable("id") Long id) {
+        taskService.deleteTask(id);
     }
 
 
-
+}

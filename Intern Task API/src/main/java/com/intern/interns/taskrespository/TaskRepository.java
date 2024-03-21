@@ -1,13 +1,9 @@
 package com.intern.interns.taskrespository;
-import com.intern.interns.model.UsersModel;
 import com.intern.interns.task.entity.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Optional;
+import org.springframework.data.jpa.repository.Query;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
-
-  Optional<Task> findByName (String name);
 
     }
 
